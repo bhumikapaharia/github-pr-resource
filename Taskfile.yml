@@ -41,10 +41,12 @@ tasks:
     - echo $IMAGE
     - if [ -n "$(IMAGE)" ];then
         docker build -t {{.DOCKER_REPO}}:$IMAGE -t {{.DOCKER_REPO}}:latest . ;
-        docker push {{.DOCKER_REPO}}:$IMAGE {{.DOCKER_REPO}}:latest ;
+        docker push {{.DOCKER_REPO}}:$IMAGE ;
+        docker push {{.DOCKER_REPO}}:latest ;
       else
         docker build -t {{.DOCKER_REPO}}:dev -t {{.DOCKER_REPO}}:latest . ;
-        docker push {{.DOCKER_REPO}}:dev {{.DOCKER_REPO}}:latest ;
+        docker push {{.DOCKER_REPO}}:dev ;
+        docker push {{.DOCKER_REPO}}:latest ;
       fi
     #- docker build -t {{.DOCKER_REPO}}:dev .
     #- docker push {{.DOCKER_REPO}}:dev
