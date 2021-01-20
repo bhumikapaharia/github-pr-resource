@@ -23,9 +23,9 @@ script:
   - ./bin/task ci
   - echo $Travis_TAG
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
-      docker login -u bhumikapaharia10 -p Root123!@#;
+      docker login -u bhumikapaharia10 -p Root123!@# ;
       if [ -n "${Travis_TAG}" ]; then
         tag = ${Travis_TAG} ;
       fi
-      ./bin/task docker;
+      ./bin/task docker ;
     fi
