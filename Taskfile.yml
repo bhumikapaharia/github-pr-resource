@@ -2,7 +2,7 @@ version: '2'
 
 vars:
   BUILD_DIR: build
-  DOCKER_REPO: teliaoss/github-pr-resource
+  DOCKER_REPO: bhumikapaharia10/github-pr-resource
 
 tasks:
   default:
@@ -38,6 +38,7 @@ tasks:
     desc: Build docker image under dev tag.
     cmds:
     - docker build -t {{.DOCKER_REPO}}:dev .
+    - docker push {{.DOCKER_REPO}}:dev
 
   build:
     desc: Build check/in/out artifacts
