@@ -19,7 +19,9 @@ notifications:
   email: false
 
 script:
-  - echo $TRAVIS_OS_NAME
-  #- docker login -u bhumikapaharia10 -p Root123!@#
-  #- curl -sL https://taskfile.dev/install.sh | sh
-  #- ./bin/task ci
+  - curl -sL https://taskfile.dev/install.sh | sh
+  - ./bin/task ci
+  - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+      docker login -u bhumikapaharia10 -p Root123!@#
+      ./bin/task docker
+    fi 
