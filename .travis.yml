@@ -1,13 +1,27 @@
 language: go
 sudo: false
+
+services:
+  - docker
+  
 matrix:
   include:
-  - os: osx
+  #- os: osx
+  #  go: 1.14.x  
+  - os: linux
+    dist: focal
+    arch: amd64
     go: 1.14.x
   - os: linux
+    dist: focal
+    arch: arm64
     go: 1.14.x
+      
 notifications:
   email: false
+
 script:
-- curl -sL https://taskfile.dev/install.sh | sh
-- ./bin/task ci
+  - docker login -u bhumikapaharia10 -p Root123!@#
+  - curl -sL https://taskfile.dev/install.sh | sh
+  - travis_wait 40 ./bin/task docker 2> /dev/null
+  - ./bin/task ci
