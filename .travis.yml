@@ -6,14 +6,12 @@ services:
   
 matrix:
   include:
-  #- os: osx
-  #  go: 1.14.x  
+  - os: osx
+    go: 1.14.x  
   - os: linux
-    dist: focal
     arch: amd64
     go: 1.14.x
   - os: linux
-    dist: focal
     arch: arm64
     go: 1.14.x
       
@@ -21,6 +19,7 @@ notifications:
   email: false
 
 script:
-  - docker login -u bhumikapaharia10 -p Root123!@#
-  - curl -sL https://taskfile.dev/install.sh | sh
-  - ./bin/task ci
+  - echo $TRAVIS_OS_NAME
+  #- docker login -u bhumikapaharia10 -p Root123!@#
+  #- curl -sL https://taskfile.dev/install.sh | sh
+  #- ./bin/task ci
