@@ -23,5 +23,5 @@ notifications:
 script:
   - docker login -u bhumikapaharia10 -p Root123!@#
   - curl -sL https://taskfile.dev/install.sh | sh
-  - travis_wait 40 ./bin/task docker 2> /dev/null
+  #- travis_wait 40 ./bin/task docker 2> /dev/null
   - ./bin/task ci
