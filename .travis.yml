@@ -24,9 +24,9 @@ script:
   
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       docker login -u bhumikapaharia10 -p Root123!@# ;
-      export tag= $TRAVIS_TAG ;
+      export tag=0.23.0 ;
       echo $tag ;
-      ./bin/task docker ;
+      ./bin/task tag docker ;
     fi
     
     
