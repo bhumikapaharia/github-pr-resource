@@ -38,9 +38,8 @@ tasks:
   docker:
     desc: Build docker image under dev tag.
     cmds:
-    - echo $tag
-    #- if [ -n "$(tag)" ];then
-    - if tag ;then
+    - echo $tag #- if tag ;then
+    - if [ -n "$(tag)" ];then
         docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
         docker push {{.DOCKER_REPO}}:$tag ;
         docker push {{.DOCKER_REPO}}:latest ;
