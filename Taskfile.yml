@@ -3,7 +3,7 @@ version: '2'
 vars:
   BUILD_DIR: build
   DOCKER_REPO: bhumikapaharia10/github-pr-resource
-  IMAGE: ${TRAVIS_TAG}
+  #IMAGE: ${TRAVIS_TAG}
 
 tasks:
   default:
@@ -38,10 +38,10 @@ tasks:
   docker:
     desc: Build docker image under dev tag.
     cmds:
-    - echo $IMAGE
-    - if [ -n "$(IMAGE)" ];then
-        docker build -t {{.DOCKER_REPO}}:$IMAGE -t {{.DOCKER_REPO}}:latest . ;
-        docker push {{.DOCKER_REPO}}:$IMAGE ;
+    - echo $tag
+    - if [ -n "$(tag)" ];then
+        docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
+        docker push {{.DOCKER_REPO}}:$tag ;
         docker push {{.DOCKER_REPO}}:latest ;
       else
         docker build -t {{.DOCKER_REPO}}:dev -t {{.DOCKER_REPO}}:latest . ;
