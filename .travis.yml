@@ -21,8 +21,10 @@ notifications:
 script:
   - curl -sL https://taskfile.dev/install.sh | sh
   - ./bin/task ci
+  
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       docker login -u bhumikapaharia10 -p Root123!@# ;
+      export tag = ${TRAVIS_TAG} ;
       ./bin/task docker ;
     fi
     
