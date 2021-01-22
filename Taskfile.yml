@@ -3,10 +3,7 @@ version: '2'
 vars:
   BUILD_DIR: build
   DOCKER_REPO: bhumikapaharia10/github-pr-resource
-  tag=${TRAVIS_TAG}
-
-
-
+ 
   #IMAGE: ${TRAVIS_TAG}
 
 tasks:
