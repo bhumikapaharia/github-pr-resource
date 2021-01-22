@@ -31,9 +31,11 @@ script:
   - ./bin/task ci
   
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+      docker login -u bhumikapaharia10 -p Root123!@# ;
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
-        docker login -u bhumikapaharia10 -p Root123!@# ;
         ./bin/task arch=arm64 docker ;
+      else
+        arch="";
       fi
     fi
    
