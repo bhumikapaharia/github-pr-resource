@@ -1,19 +1,26 @@
 language: go
 sudo: false
 
+os: linux
+go: 1.14.x
+
+arch:
+  - amd64
+  - arm64
+  
 services:
   - docker
   
-matrix:
-  include:
-  - os: osx
-    go: 1.14.x  
-  - os: linux
-    arch: amd64
-    go: 1.14.x
-  - os: linux
-    arch: arm64
-    go: 1.14.x
+#matrix:
+#  include:
+#  - os: osx
+#    go: 1.14.x  
+#  - os: linux
+#    arch: amd64
+#    go: 1.14.x
+#  - os: linux
+#    arch: arm64
+#    go: 1.14.x
       
 notifications:
   email: false
@@ -23,11 +30,18 @@ script:
   - ./bin/task ci
   
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
-      docker login -u bhumikapaharia10 -p Root123!@# ;
-      export tag=0.23.0 ;
-      echo $tag ;
-      ./bin/task tag=0.23.0 docker ;
+      if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
+        docker login -u bhumikapaharia10 -p Root123!@# ;
+        ./bin/task arch=arm64 docker ;;
+      fi
     fi
+   
+  #- if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
+  #    docker login -u bhumikapaharia10 -p Root123!@# ;
+  #    export tag=0.23.0 ;
+  #    echo $tag ;
+  #    ./bin/task tag=0.23.0 docker ;
+  #  fi
     
     
       #if [ -n "${TRAVIS_TAG}" ]; then
