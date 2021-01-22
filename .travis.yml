@@ -35,7 +35,7 @@ script:
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
         ./bin/task tag=${TRAVIS_TAG} arch=arm64 docker ;
       else
-        arch="";
+        ./bin/task tag=${TRAVIS_TAG} arch="" docker ;
       fi
     fi
    
