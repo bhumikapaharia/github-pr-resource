@@ -36,20 +36,19 @@ tasks:
     - go test -race -v ./... -tags=e2e
 
   docker:
-    desc: Build docker image under dev tag.
+    desc: Build docker image #under dev tag.
     cmds:
+    - if [ -n "${tag}" ];then
+        docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
+        docker push {{.DOCKER_REPO}}:$tag ;
+        docker push {{.DOCKER_REPO}}:latest ;
+      else
+        docker build -t {{.DOCKER_REPO}}:dev . ;
+        docker push {{.DOCKER_REPO}}:dev ;
+      fi
+    #- docker build -t {{.DOCKER_REPO}}:dev .
+    #- docker push {{.DOCKER_REPO}}:dev
     #- echo $tag #- if tag ;then
-    #- if [ -n "${tag}" ];then
-    #    docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
-    #    docker push {{.DOCKER_REPO}}:$tag ;
-    #    docker push {{.DOCKER_REPO}}:latest ;
-    #  else
-    #    docker build -t {{.DOCKER_REPO}}:dev -t {{.DOCKER_REPO}}:latest . ;
-    #    docker push {{.DOCKER_REPO}}:dev ;
-    #    docker push {{.DOCKER_REPO}}:latest ;
-    #  fi
-    - docker build -t {{.DOCKER_REPO}}:dev .
-    - docker push {{.DOCKER_REPO}}:dev
 
   build:
     desc: Build check/in/out artifacts
