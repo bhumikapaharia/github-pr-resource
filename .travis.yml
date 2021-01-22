@@ -2,6 +2,7 @@ language: go
 sudo: false
 
 os: linux
+dist: focal
 go: 1.14.x
 
 arch:
@@ -32,7 +33,7 @@ script:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
         docker login -u bhumikapaharia10 -p Root123!@# ;
-        ./bin/task arch=arm64 docker ;;
+        ./bin/task arch=arm64 docker ;
       fi
     fi
    
