@@ -34,7 +34,7 @@ script:
       docker login -u bhumikapaharia10 -p Root123!@# ;
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
         if [ -n "${tag}" ];then
-          ./bin/task tag=${TRAVIS_TAG} arch=$GOARCH docker ;
+          ./bin/task tag=${TRAVIS_TAG} arch="arm64" docker ;
           docker tag {{.DOCKER_REPO}}:dev {{.DOCKER_REPO}}:dev-arm64 ;
           docker push {{.DOCKER_REPO}}:dev-arm64 ;
         fi
