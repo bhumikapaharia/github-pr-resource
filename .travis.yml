@@ -34,7 +34,6 @@ script:
       docker login -u bhumikapaharia10 -p Root123!@# ;
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
         ./bin/task tag=${TRAVIS_TAG} arch="${TRAVIS_CPU_ARCH}" docker ;
-        #./bin/task tag=${TRAVIS_TAG} arch="arm64" docker ;
       else
         ./bin/task tag=${TRAVIS_TAG} arch="" docker ;
       fi
@@ -47,7 +46,7 @@ script:
   #    ./bin/task tag=0.23.0 docker ;
   #  fi
     
-    
+    #./bin/task tag=${TRAVIS_TAG} arch="arm64" docker ;
       #if [ -n "${TRAVIS_TAG}" ]; then
       #  tag = ${TRAVIS_TAG} ;
       #fi
