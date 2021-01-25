@@ -33,12 +33,20 @@ script:
   - if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
       docker login -u bhumikapaharia10 -p Root123!@# ;
       if [ "${TRAVIS_CPU_ARCH}" == "arm64" ]; then
-        ./bin/task tag=${TRAVIS_TAG} arch=$GOARCH docker ;
+        if [ -n "${tag}" ];then
+          ./bin/task tag=${TRAVIS_TAG} arch=$GOARCH docker ;
+          docker tag {{.DOCKER_REPO}}:dev {{.DOCKER_REPO}}:dev-arm64 ;
+          docker push {{.DOCKER_REPO}}:dev-arm64 ;
+        fi
       else
-        ./bin/task tag=${TRAVIS_TAG} arch="" docker ;
+        if [ -n "${tag}" ];then
+          ./bin/task tag=${TRAVIS_TAG} arch="" docker ;
+          docker tag {{.DOCKER_REPO}}:dev {{.DOCKER_REPO}}:dev-amd64 ;
+          docker push {{.DOCKER_REPO}}:dev-amd64 ;
+        fi
       fi
     fi
-   
+  
   #- if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
   #    docker login -u bhumikapaharia10 -p Root123!@# ;
   #    export tag=0.23.0 ;
