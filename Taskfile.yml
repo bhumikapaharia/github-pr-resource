@@ -39,18 +39,19 @@ tasks:
   docker:
     desc: Build docker image #under dev tag.
     cmds:
-    - if [ -n "${tag}" ];then
-        docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
-      else
-        docker build -t {{.DOCKER_REPO}}:dev . ;
-      fi
+      - if [ -n "${tag}" ];then
+          docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
+          docker push {{.DOCKER_REPO}}:$tag ;
+          docker push {{.DOCKER_REPO}}:latest ;
+        else
+          docker build -t {{.DOCKER_REPO}}:dev . ;
+          docker push {{.DOCKER_REPO}}:dev ;
+        fi
+      
       #- if [ -n "${tag}" ];then
-      #  docker build -t {{.DOCKER_REPO}}:$tag-$arch -t {{.DOCKER_REPO}}:latest-$arch . ;
-      #  docker push {{.DOCKER_REPO}}:$tag-$arch ;
-      #  docker push {{.DOCKER_REPO}}:latest-$arch ;
+      #  docker build -t {{.DOCKER_REPO}}:$tag -t {{.DOCKER_REPO}}:latest . ;
       #else
-      #  docker build -t {{.DOCKER_REPO}}:dev-$arch . ;
-      #  docker push {{.DOCKER_REPO}}:dev-$arch ;
+      #  docker build -t {{.DOCKER_REPO}}:dev . ;
       #fi
     #- docker build -t {{.DOCKER_REPO}}:dev .
     #- docker push {{.DOCKER_REPO}}:dev
